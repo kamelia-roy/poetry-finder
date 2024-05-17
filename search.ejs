@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Poetry Finder - Search Results</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    function addToFavorites(title, author, lines) {
+      fetch('/favorites', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title: title, author: author, lines: lines })
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error adding poem to favorites');
+      });
+    }
+  </script>
+</head>
+<body>
+  <header class="fourth-color">
+    <div class="container">
+      <h1>Search Results</h1>
+    </div>
+  </header>
+  <div class="container second-color">
+    <ul>
+      <% poems.forEach(poem => { 
+        const escapedTitle = encodeURIComponent(poem.title);
+        const escapedAuthor = encodeURIComponent(poem.author);
+        const escapedLines = encodeURIComponent(poem.lines.join('\n'));
+      %>
+        <li class="third-color">
+          <a href="/poem/<%= escapedTitle %>?back=true"><%= poem.title %></a> by <%= poem.author %>
+          <%
+            const title = poem.title.replace(/'/g, "\\\'");
+            const author = poem.author.replace(/'/g, "\\\'");
+            const lines = poem.lines.map(line => line.replace(/'/g, "\\\'")).join('\\n');
+          %>
+          <button type="button" onclick="addToFavorites('<%= title %>', '<%= author %>', '<%= lines %>')">Add to Favorites</button>
+        </li>
+      <% }); %>
+    </ul>
+    <a href="/">Back to Home</a>
+  </div>
+  <footer class="fourth-color">
+    <div class="container">
+      <p>&copy; 2024 Poetry Finder</p>
+    </div>
+  </footer>
+</body>
+</html>

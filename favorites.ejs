@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite Poems</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="fourth-color">
+    <div class="container">
+      <h1>Favorite Poems</h1>
+    </div>
+  </header>
+  <div class="container second-color">
+    <ul>
+      <% favoritePoems.forEach(poem => { %>
+        <li class="third-color">
+          <a href="/poem/<%= encodeURIComponent(poem.title) %>"><%= poem.title %></a> by <%= poem.author %>
+          <pre><%= poem.lines.join('\n') %></pre>
+        </li>
+      <% }); %>
+    </ul>
+    <form method="POST" action="/favorites/delete">
+      <button type="submit">Remove All Favorite Poems</button>
+    </form>
+    <a href="/">Back to Home</a>
+  </div>
+  <footer class="fourth-color">
+    <div class="container">
+      <p>&copy; 2024 Poetry Finder</p>
+    </div>
+  </footer>
+</body>
+</html>
