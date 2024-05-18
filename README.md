@@ -20,7 +20,7 @@ This app allows users to search for poems by keyword or author using the PoetryD
 (https://poetry-finder.onrender.com/)
 
 ## YouTube Video Demo Link:
-[Link to YouTube Demo]([https://www.youtube.com](https://youtu.be/-WsBaciaE-8))
+[[Link to YouTube Demo](https://www.youtube.com/watch?v=-WsBaciaE-8)
 
 ## APIs:
 - PoetryDB API (https://github.com/thundercomb/poetrydb#readme)
