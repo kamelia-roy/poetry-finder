@@ -11,7 +11,7 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public/style.css'));
+app.use(express.static(__dirname + '/style.css'))
 
 // MongoDB connection setup (using MongoDB Node.js driver)
 const { MongoClient } = require('mongodb');
