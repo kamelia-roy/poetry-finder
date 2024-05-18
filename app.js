@@ -11,7 +11,12 @@ const app = express();
 // Middleware to parse JSON bodies
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + 'style.css'))
+// Middleware to serve static files
+app.use(express.static(__dirname + '/public'));
+
+// Set view engine and views directory
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
 // MongoDB connection setup (using MongoDB Node.js driver)
 const { MongoClient } = require('mongodb');
@@ -33,8 +38,8 @@ async function connectToDB() {
 
 connectToDB();
 
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
+//app.set('view engine', 'ejs');
+//app.use(express.static('public'));
 
 // Home route
 app.get('/', (req, res) => {
